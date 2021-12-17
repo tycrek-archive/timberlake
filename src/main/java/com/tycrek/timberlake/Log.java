@@ -89,10 +89,61 @@ public class Log {
     private void out(Level level, String message) {
         sinks.forEach(sink -> sink.out(this, String.format("%s %s", getTitle(level), message)));
     }
+
+    /**
+     * Logs a debug message
+     */
+    public void debug(String message) {
+        out(Level.DEBUG, message);
+    }
+
     /**
      * Logs an info message
      */
     public void info(String message) {
         out(Level.INFO, message);
     }
+
+    /**
+     * Logs a warning message (String)
+     */
+    public void warn(String message) {
+        out(Level.WARN, message);
+    }
+
+    /**
+     * Logs a warning message (Throwable)
+     */
+    public void warn(Throwable throwable) {
+        out(Level.WARN, throwable.getMessage());
+    }
+
+    /**
+     * Logs an error message (String)
+     */
+    public void error(String message) {
+        sinks.forEach(sink -> sink.error(this, String.format("%s %s", getTitle(Level.ERROR), message)));
+    }
+
+    /**
+     * Logs an error message (Throwable)
+     */
+    public void error(Throwable throwable) {
+        sinks.forEach(sink -> sink.error(this, String.format("%s %s", getTitle(Level.ERROR), throwable.getMessage()), throwable));
+    }
+
+    /**
+     * Logs a fatal error message (String)
+     */
+    public void fatal(String message) {
+        sinks.forEach(sink -> sink.error(this, String.format("%s %s", getTitle(Level.FATAL), message)));
+    }
+
+    /**
+     * Logs a fatal error message (Throwable)
+     */
+    public void fatal(Throwable throwable) {
+        sinks.forEach(sink -> sink.error(this, String.format("%s %s", getTitle(Level.FATAL), throwable.getMessage()), throwable));
+    }
+    //#endregion
 }
