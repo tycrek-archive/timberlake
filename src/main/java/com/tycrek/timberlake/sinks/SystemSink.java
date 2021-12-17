@@ -3,6 +3,7 @@ package com.tycrek.timberlake.sinks;
 import com.tycrek.timberlake.Log;
 import com.tycrek.timberlake.Sink;
 
+// todo: BUG: Figure out why System.err doesn't immediately print to console
 /**
  * A basic {@link Sink} that prints to the system console.
  * <p>
@@ -17,12 +18,12 @@ public class SystemSink implements Sink {
 
     @Override
     public void error(Log log, String message) {
-        System.err.printf("%s%n", message);
+        System.out.printf("%s%n", message);
     }
 
     @Override
     public void error(Log log, Throwable t) {
-        t.printStackTrace(System.err);
+        t.printStackTrace(System.out);
     }
 
     @Override
