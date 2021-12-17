@@ -65,7 +65,11 @@ public class Log {
      */
     public Channel channel(String channelName) {
         return channels.computeIfAbsent(channelName, unused -> {
+
+            // Create a new channel
             var newChannel = new Channel(channelName, this);
+
+            // Add all the sinks to the new channel
             sinks.forEach(newChannel::addSink);
             return newChannel;
         });
