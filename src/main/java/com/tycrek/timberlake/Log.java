@@ -3,6 +3,7 @@ package com.tycrek.timberlake;
 import com.tycrek.timberlake.sinks.SystemSink;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,21 @@ public class Log {
     @Getter private final String channelName;
     private final List<Sink> sinks = new ArrayList<>();
     private final ConcurrentHashMap<String, Channel> channels = new ConcurrentHashMap<>();
+
+    //#region Configurable options
+    /**
+     * Show the channel name in the log message?
+     */
+    @Getter @Setter private boolean includeName = true;
+    /**
+     * Should the channel name be uppercase?
+     */
+    @Getter @Setter private boolean uppercaseName = true;
+    /**
+     * Show timestamp in the log message?
+     */
+    @Getter @Setter private boolean showTimestamp = true;
+    //#endregion
 
     /**
      * Sample usage of the {@link Log} class
