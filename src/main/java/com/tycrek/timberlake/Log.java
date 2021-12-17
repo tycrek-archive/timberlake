@@ -86,6 +86,12 @@ public class Log {
 
             // Add all the sinks to the new channel
             sinks.forEach(newChannel::addSink);
+
+            // Set configurable values
+            newChannel.setIncludeName(includeName);
+            newChannel.setUppercaseName(uppercaseName);
+            newChannel.setShowTimestamp(showTimestamp);
+
             return newChannel;
         });
     }
