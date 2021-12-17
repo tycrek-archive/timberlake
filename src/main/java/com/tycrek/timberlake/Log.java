@@ -38,6 +38,8 @@ public class Log {
 
         // Create a new Log instance. Channel name could be the title of your project, for example.
         var log = new Log("timberlake");
+        log.setUppercaseName(false);
+        log.setShowTimestamp(false);
 
         // Add any Sinks you want to use. The default Sink is a SystemSink, which prints to the console.
         log.addSink(new SystemSink());
