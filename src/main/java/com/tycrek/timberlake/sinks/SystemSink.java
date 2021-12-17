@@ -12,11 +12,11 @@ public class SystemSink implements Sink {
 
     @Override
     public void out(Log log, String message) {
-        System.out.printf("[%s] %s%n", log.getChannelName(), message);
+        System.out.printf("%s%n", message);
     }
 
     @Override
     public void error(Log log, String message) {
-        System.err.printf("[%s] %s%n", log.getChannelName(), message);
+        System.err.printf("%s%n", message);
     }
 }

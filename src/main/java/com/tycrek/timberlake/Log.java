@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -71,9 +72,19 @@ public class Log {
     }
 
     /**
+     * Generates a title with the current configuration
+     */
+    private String getTitle(Level level) {
+        return String.format("%s%s[%s]",
+                showTimestamp ? String.format("[%s] ", Date.from(new Date().toInstant())) : "",
+                includeName ? String.format("[%s] ", uppercaseName ? channelName.toUpperCase() : channelName) : "",
+                level);
+    }
+
+    /**
      * Logs an info message
      */
     public void info(String message) {
-        sinks.forEach(sink -> sink.out(this, String.format("[%s] %s", Level.INFO, message)));
+        sinks.forEach(sink -> sink.out(this, String.format("%s %s", getTitle(Level.INFO), message)));
     }
 }
