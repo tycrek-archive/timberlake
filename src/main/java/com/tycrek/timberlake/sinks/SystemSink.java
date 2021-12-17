@@ -19,4 +19,15 @@ public class SystemSink implements Sink {
     public void error(Log log, String message) {
         System.err.printf("%s%n", message);
     }
+
+    @Override
+    public void error(Log log, Throwable t) {
+        t.printStackTrace(System.err);
+    }
+
+    @Override
+    public void error(Log log, String message, Throwable t) {
+        error(log, message);
+        error(log, t);
+    }
 }

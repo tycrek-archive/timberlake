@@ -12,7 +12,17 @@ public interface Sink {
     void out(Log log, String message);
 
     /**
-     * Error output stream (file descriptor 2)
+     * String-based error output stream (file descriptor 2)
      */
     void error(Log log, String message);
+
+    /**
+     * Throwable-based error output stream (file descriptor 2)
+     */
+    void error(Log log, Throwable t);
+
+    /**
+     * String & Throwable-based error output stream (file descriptor 2)
+     */
+    void error(Log log, String message, Throwable t);
 }
