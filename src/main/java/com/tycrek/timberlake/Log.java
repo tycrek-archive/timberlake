@@ -48,6 +48,21 @@ public class Log {
         // Call the logger methods
         log.info("Hello?");
         epicChannel.info("Hello!");
+
+        // Regular output
+        log.debug("Alright, time to test this...");
+        log.info("Hello!");
+        log.warn("You better watch your ass!");
+
+        // Error output (String)
+        log.error("Uh oh, something went wrong!");
+        log.fatal("Ahh fuck, something went really wrong!");
+
+        // Error output (Throwable)
+        var exception = new Exception("There was a big problem!");
+        log.warn(exception);
+        log.error(exception);
+        log.fatal(exception);
     }
 
     /**
