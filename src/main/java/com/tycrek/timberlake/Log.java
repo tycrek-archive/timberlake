@@ -81,10 +81,18 @@ public class Log {
                 level);
     }
 
+    //#region Logger methods
+
+    /**
+     * Shortcut for simpler logger methods
+     */
+    private void out(Level level, String message) {
+        sinks.forEach(sink -> sink.out(this, String.format("%s %s", getTitle(level), message)));
+    }
     /**
      * Logs an info message
      */
     public void info(String message) {
-        sinks.forEach(sink -> sink.out(this, String.format("%s %s", getTitle(Level.INFO), message)));
+        out(Level.INFO, message);
     }
 }
